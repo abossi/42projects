@@ -5,3 +5,7 @@ body {
     right: 0;
     left: 0;
 }
+
+.active_div {
+	background-color: white !important;
+}
