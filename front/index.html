@@ -31,7 +31,6 @@
 
 var optionKey = false;
 var divX = 1;
-var divY = 1;
 
 $( document ).ready(function() {
 
@@ -41,10 +40,7 @@ $( document ).ready(function() {
 	window.onkeydown = function(e) {
 		var key = e.keyCode ? e.keyCode : e.which;
 
-		if (divY == 1)
-			$('#div_' + divY + '_' + divX).toggleClass('active_div');
-		else
-			$('#div_' + divY + '_1').toggleClass('active_div');
+		$('#div_1_' + divX).toggleClass('active_div');
 		if (key == 18)
 			optionKey = true;
 		if (optionKey){
@@ -58,25 +54,8 @@ $( document ).ready(function() {
 				if (divX == 0)
 					divX = 2;
 			}
-			if (key == 38){
-				divY--;
-				if (divY == 0)
-					divY = 1;
-			}
-			if (key == 40){
-				divY++;
-				if (divY == 2)
-					divY = 1;
-			}
 		}
-		if (divY == 1){
-			$('#div_' + divY + '_' + divX).toggleClass('active_div');
-			$('#div_' + divY + '_' + divX).focus();
-		}
-		else{
-			$('#div_' + divY + '_1').toggleClass('active_div');
-			$('#div_' + divY + '_1').focus();
-		}
+		$('#div_1_' + divX).toggleClass('active_div');
 	}
 	window.onkeyup = function(e) {
 		var key = e.keyCode ? e.keyCode : e.which;
@@ -88,25 +67,11 @@ $( document ).ready(function() {
 		$('.active_div').toggleClass('active_div');
 		$('#div_1_1').toggleClass('active_div');
 		divX = 1;
-		divY = 1;
 	});
 	$('#div_1_2').on('click', function(){
 		$('.active_div').toggleClass('active_div');
 		$('#div_1_2').toggleClass('active_div');
 		divX = 2;
-		divY = 1;
-	});
-	$('#div_1_3').on('click', function(){
-		$('.active_div').toggleClass('active_div');
-		$('#div_1_3').toggleClass('active_div');
-		divX = 3;
-		divY = 1;
-	});
-	$('#div_2_1').on('click', function(){
-		$('.active_div').toggleClass('active_div');
-		$('#div_2_1').toggleClass('active_div');
-		divX = 1;
-		divY = 2;
 	});
 	/* end bind event*/
 

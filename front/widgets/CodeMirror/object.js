@@ -17,4 +17,8 @@ function codeMirrorObj(div_contener){
 		$('#' + this.div_name + '-save').removeAttr('disabled');
 		$('#' + this.div_name + '-file').html(file);
 	}
+
+	this.get_focus = function(){
+		$('#' + this.div_name + '-codemirror:CodeMirror').addClass('CodeMirro-focused');
+	}
 }
