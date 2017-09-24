@@ -1,11 +1,11 @@
 class Event
 {
-	constructor(name)
+	constructor(name, params)
 	{
 		console.log("new event: " + name);
 		this.name = name;
 		this.listeners = [];
-
+		this.params = params;
 	}
 
 	register(module)
@@ -13,13 +13,24 @@ class Event
 		this.listeners.push(module);
 	}
 
-	dispatch()
+	dispatch(params)
 	{
 		var n = this.name;
+		var params_send = {};
+
+		/*for (var i in this.params)
+		{
+			if (!params.hasOwnProperty(this.params[i]))
+			{
+				console.error('missing parameters ' + this.params[i] + ' for event ' + n);
+				return ;
+			}
+			params_send[this.params[i]] = params[this.params[i]];
+		}*/
 
 		this.listeners.forEach(function(el)
 		{
-			el.callback(n, "test_parameter");
+			el.callback(n, params);
 		})
 	}
 }
@@ -29,15 +40,9 @@ class Hub
 	constructor()
 	{
 		this.events = {
-					'#clock': new Event('#clock'),
-					'#focus1': new Event('#focus1'),
-					'#focus2': new Event('#focus2')
+					'#APIRequestFileOpen': new Event('#APIRequestFileOpen', ['file']),
+					'#OnFileOpen': new Event('#OnFileOpen', ['file', 'content'])
 		};
-	}
-
-	test()
-	{
-		console.log('ok');
 	}
 
 	register(name, module)
@@ -50,9 +55,9 @@ class Hub
 		this.events[name] = new Event(name);
 	}
 
-	dispatch(name)
+	dispatch(name, params)
 	{
-		this.events[name].dispatch();
+		this.events[name].dispatch(params);
 	}
 }
 
@@ -63,7 +68,7 @@ let EventManager = new Hub();
 
 
 
-
+/*
 class FakePluggin
 {
 	constructor(domTarget)
@@ -103,8 +108,7 @@ var pluggin2 = new FakePluggin(document.querySelector('#div_1_2'));
 pluggin1.register('#clock', dummyCallback);
 pluggin2.register('#clock', anotherDummyCallback);
 pluggin1.register('#focus2', focusCallback);
-pluggin2.register('#focus1', focusCallback);
 
 setInterval(function(){
 	EventManager.dispatch('#clock');
-}, 5000);
+}, 5000);*/
