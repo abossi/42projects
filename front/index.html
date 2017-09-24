@@ -7,20 +7,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<link rel="stylesheet" href="front/extern/bootstrap.min.css">
 		<link rel="stylesheet" href="front/style/index.css">
+		<link rel="stylesheet" href="front/extern/codemirror.css">
 		<script src="/front/extern/jquery-3.1.1.min.js"></script>
 		<script src="/front/extern/bootstrap.min.js"></script>
+		<script src="/front/extern/codemirror.js"></script>
+
+		<script src="/front/widgets/CodeMirror/object.js"></script>
 	</head>
 	<body>
 	<div class="tab-content" style="height:100%;">
 	<div role="tabpanel" class="tab-pane active container-fluid" style="height:100%;overflow:auto;">
 	<div class="row" style="height:100%;">
-		<div id="div_1_1" class="col-md-4 active_div" style="height:75%;background-color: #fafafa;padding:10px;">
+		<div id="div_1_1" class="col-md-6 active_div" style="height:100%;background-color:#fafafa;padding:10px;position:relative;">
 		</div>
-		<div id="div_1_2" class="col-md-4" style="height:75%;background-color: #fafafa;padding:10px;">
-		</div>
-		<div id="div_1_3" class="col-md-4" style="height:75%;background-color: #fafafa;padding:10px;">
-		</div>
-		<div id="div_2_1" class="col-md-12" style="height:25%;background-color: #fafafa;padding:10px;">
+		<div id="div_1_2" class="col-md-6" style="height:100%;background-color:#fafafa;padding:10px;position:relative;">
 		</div>
 		</div>
 	</div>
@@ -34,10 +34,13 @@ var divX = 1;
 var divY = 1;
 
 $( document ).ready(function() {
+
+	/***************************************************/
+	/*      bind keyEvent and mouseEvent for div       */
+	/***************************************************/
 	window.onkeydown = function(e) {
 		var key = e.keyCode ? e.keyCode : e.which;
 
-		console.log(key);
 		if (divY == 1)
 			$('#div_' + divY + '_' + divX).toggleClass('active_div');
 		else
@@ -47,34 +50,37 @@ $( document ).ready(function() {
 		if (optionKey){
 			if (key == 39){
 				divX++;
-				if (divX == 4)
+				if (divX == 3)
 					divX = 1;
 			}
 			if (key == 37){
 				divX--;
 				if (divX == 0)
-					divX = 3;
+					divX = 2;
 			}
 			if (key == 38){
 				divY--;
 				if (divY == 0)
-					divY = 2;
+					divY = 1;
 			}
 			if (key == 40){
 				divY++;
-				if (divY == 3)
+				if (divY == 2)
 					divY = 1;
 			}
 		}
-		if (divY == 1)
+		if (divY == 1){
 			$('#div_' + divY + '_' + divX).toggleClass('active_div');
-		else
+			$('#div_' + divY + '_' + divX).focus();
+		}
+		else{
 			$('#div_' + divY + '_1').toggleClass('active_div');
+			$('#div_' + divY + '_1').focus();
+		}
 	}
 	window.onkeyup = function(e) {
 		var key = e.keyCode ? e.keyCode : e.which;
 
-		console.log(key);
 		if (key == 18)
 			optionKey = false;
 	}
@@ -102,5 +108,11 @@ $( document ).ready(function() {
 		divX = 1;
 		divY = 2;
 	});
+	/* end bind event*/
+
+	/***************************************************/
+	/*    create all object from class for each div    */
+	/***************************************************/
+	editor = new codeMirrorObj($('#div_1_2'));
 });
 </script>
