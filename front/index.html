@@ -14,15 +14,15 @@
 	<div class="tab-content" style="height:100%;">
 	<div role="tabpanel" class="tab-pane active container-fluid" style="height:100%;overflow:auto;">
 	<div class="row" style="height:100%;">
-					<div id="div_1_1" class="col-md-4 active_div" style="height:80%;background-color: #dddddd;padding:10px;">
+		<div id="div_1_1" class="col-md-4 active_div" style="height:75%;background-color: #fafafa;padding:10px;">
 		</div>
-					<div id="div_1_2" class="col-md-4" style="height:80%;background-color: #eeeeee;padding:10px;">
+		<div id="div_1_2" class="col-md-4" style="height:75%;background-color: #fafafa;padding:10px;">
 		</div>
-					<div id="div_1_3" class="col-md-4" style="height:80%;background-color: #dddddd;padding:10px;">
+		<div id="div_1_3" class="col-md-4" style="height:75%;background-color: #fafafa;padding:10px;">
 		</div>
-					<div id="div_2_1" class="col-md-12" style="height:20%;background-color: #cccccc;padding:10px;">
+		<div id="div_2_1" class="col-md-12" style="height:25%;background-color: #fafafa;padding:10px;">
 		</div>
-				</div>
+		</div>
 	</div>
 	</div>
 	</body>
@@ -78,5 +78,29 @@ $( document ).ready(function() {
 		if (key == 18)
 			optionKey = false;
 	}
+	$('#div_1_1').on('click', function(){
+		$('.active_div').toggleClass('active_div');
+		$('#div_1_1').toggleClass('active_div');
+		divX = 1;
+		divY = 1;
+	});
+	$('#div_1_2').on('click', function(){
+		$('.active_div').toggleClass('active_div');
+		$('#div_1_2').toggleClass('active_div');
+		divX = 2;
+		divY = 1;
+	});
+	$('#div_1_3').on('click', function(){
+		$('.active_div').toggleClass('active_div');
+		$('#div_1_3').toggleClass('active_div');
+		divX = 3;
+		divY = 1;
+	});
+	$('#div_2_1').on('click', function(){
+		$('.active_div').toggleClass('active_div');
+		$('#div_2_1').toggleClass('active_div');
+		divX = 1;
+		divY = 2;
+	});
 });
 </script>
