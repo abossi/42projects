@@ -8,17 +8,22 @@ function codeMirrorObj(div_contener){
 	    lineNumbers: true
 	});
 
-	this.edit_text = function(file, string){
+	this.edit_text = function(nameEvent, params){
 		$('#' + this.div_name + '-codemirror').html('');
 		this.editor = CodeMirror($('#' + this.div_name + '-codemirror').get(0), {
-			value: string,
+			value: params['content'],
 		    lineNumbers: true
 		});
 		$('#' + this.div_name + '-save').removeAttr('disabled');
-		$('#' + this.div_name + '-file').html(file);
+		$('#' + this.div_name + '-file').html(params['file']);
 	}
 
 	this.get_focus = function(){
 		$('#' + this.div_name + '-codemirror:CodeMirror').addClass('CodeMirro-focused');
+	}
+
+	this.register = function(eventName, callback)
+	{
+		EventManager.register(eventName, { 'callback': callback.bind(this) });
 	}
 }

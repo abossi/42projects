@@ -1,0 +1,1 @@
+PROJECT_PATH = "../42/21sh"

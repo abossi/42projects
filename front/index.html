@@ -11,8 +11,10 @@
 		<script src="/front/extern/jquery-3.1.1.min.js"></script>
 		<script src="/front/extern/bootstrap.min.js"></script>
 		<script src="/front/extern/codemirror.js"></script>
+		<script src="/front/extern/socket.io.min.js"></script>
 
 		<script src="/front/widgets/CodeMirror/object.js"></script>
+		<script src="/front/widgets/api/object.js"></script>
 	</head>
 	<body>
 	<div class="tab-content" style="height:100%;">
@@ -77,8 +79,12 @@ $( document ).ready(function() {
 	/* end bind event*/
 
 	/***************************************************/
-	/*    create all object from class for each div    */
+	/*    create all object and connect each events    */
 	/***************************************************/
 	editor = new codeMirrorObj($('#div_1_2'));
+	editor.register('#OnFileOpen', editor.edit_text);
+	api = new apiObj();
+	api.register('#APIRequestFileOpen', api.requestFileOpen);
+	/* end create objects and binding */
 });
 </script>
