@@ -19,7 +19,7 @@ function codeMirrorObj(div_contener){
 	}
 
 	this.get_focus = function(){
-		$('#' + this.div_name + '-codemirror:CodeMirror').addClass('CodeMirro-focused');
+		this.editor.focus();
 	}
 
 	this.register = function(eventName, callback)

@@ -59,6 +59,8 @@ $( document ).ready(function() {
 			}
 		}
 		$('#div_1_' + divX).toggleClass('active_div');
+		if (divX == 2)
+			editor.get_focus();
 	}
 	window.onkeyup = function(e) {
 		var key = e.keyCode ? e.keyCode : e.which;
@@ -73,7 +75,7 @@ $( document ).ready(function() {
 	});
 	$('#div_1_2').on('click', function(){
 		$('.active_div').toggleClass('active_div');
-		$('#div_1_2').toggleClass('active_div');
+		editor.get_focus();
 		divX = 2;
 	});
 	/* end bind event*/
