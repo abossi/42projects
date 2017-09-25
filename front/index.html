@@ -84,10 +84,11 @@ $( document ).ready(function() {
 	/***************************************************/
 	/*    create all object and connect each events    */
 	/***************************************************/
-	editor = new codeMirrorObj($('#div_1_2'));
+	editor = new codeMirrorObj($('#div_1_2'), 'editor');
 	editor.register('#OnFileOpen', editor.edit_text);
 	api = new apiObj();
 	api.register('#APIRequestFileOpen', api.requestFileOpen);
+	api.register('#APIRequestFileSave', api.requestFileSave);
 	tree = new treeObj($('#div_1_1'));
 	tree.register('#OnTree', tree.apply_tree);
 	/* end create objects and binding */

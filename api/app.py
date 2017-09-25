@@ -39,6 +39,31 @@ def requestFileOpen():
     	"content": lines
     })
 
+@app.route('/requestFileSave', methods=['GET'])
+def requestFileSave():
+    if not request.args or not 'file' in request.args or not 'content' in request.args:
+        return jsonify({
+                "status": "error",
+                "message": "error in json"
+        }), 400
+    try:
+        with open(os.path.join(settings.PROJECT_PATH, request.args['file']), "w") as f:
+            f.write(request.args['content'])
+    except FileNotFoundError:
+        return {
+                "status": "error",
+                "message": "file not found",
+        }
+    except PermissionError:
+        return {
+                "status": "error",
+                "message": "permission denied",
+        }
+    return jsonify({
+    	"file": request.args['file'],
+    	"content": request.args['content']
+    })
+
 @socketio.on('connect')
 def test_connect():
 	result = []

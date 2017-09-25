@@ -20,13 +20,34 @@ function apiObj(){
 				file: params['file']
 			},
 			success : function(json){
-				console.log(json);
 				EventManager.dispatch('#OnFileOpen', json);
 				deferred.resolve(json); //affectation du json dans une variable global
 				return json;
 			},
 			error : function(resultat, statut, erreur){
-				alert('Impossible to get project list!');
+				alert('Impossible to open file!');
+			}
+	    });
+	    return deferred.promise();
+	}
+
+	this.requestFileSave = function(nameEvent, params){
+	    var deferred = new $.Deferred();
+		$.ajax({
+			url : '/requestFileSave',
+			type : 'GET',
+			data: {
+				file: params['file'],
+				content: params['content']
+			},
+			success : function(json){
+				EventManager.dispatch('#OnFileSave', json);
+				deferred.resolve(json); //affectation du json dans une variable global
+				return json;
+			},
+			error : function(resultat, statut, erreur){
+				console.log(resultat);
+				alert('Impossible to save file!');
 			}
 	    });
 	    return deferred.promise();
