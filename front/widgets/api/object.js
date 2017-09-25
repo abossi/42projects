@@ -7,6 +7,9 @@ function apiObj(){
     /*socket.on('connect', function() {
         socket.emit('my event', {data: 'I\'m connected!'});
     });*/
+    socket.on('emitTree', function(data) {
+        EventManager.dispatch('#OnTree', {tree: data});
+    });
 
 	this.requestFileOpen = function(nameEvent, params){
 	    var deferred = new $.Deferred();

@@ -15,6 +15,7 @@
 
 		<script src="/front/widgets/CodeMirror/object.js"></script>
 		<script src="/front/widgets/api/object.js"></script>
+		<script src="/front/widgets/tree/object.js"></script>
 	</head>
 	<body>
 	<div class="tab-content" style="height:100%;">
@@ -87,6 +88,8 @@ $( document ).ready(function() {
 	editor.register('#OnFileOpen', editor.edit_text);
 	api = new apiObj();
 	api.register('#APIRequestFileOpen', api.requestFileOpen);
+	tree = new treeObj($('#div_1_1'));
+	tree.register('#OnTree', tree.apply_tree);
 	/* end create objects and binding */
 });
 </script>

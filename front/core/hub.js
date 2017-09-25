@@ -18,7 +18,7 @@ class Event
 		var n = this.name;
 		var params_send = {};
 
-		/*for (var i in this.params)
+		for (var i in this.params)
 		{
 			if (!params.hasOwnProperty(this.params[i]))
 			{
@@ -26,11 +26,11 @@ class Event
 				return ;
 			}
 			params_send[this.params[i]] = params[this.params[i]];
-		}*/
+		}
 
 		this.listeners.forEach(function(el)
 		{
-			el.callback(n, params);
+			el.callback(n, params_send);
 		})
 	}
 }
@@ -41,7 +41,8 @@ class Hub
 	{
 		this.events = {
 					'#APIRequestFileOpen': new Event('#APIRequestFileOpen', ['file']),
-					'#OnFileOpen': new Event('#OnFileOpen', ['file', 'content'])
+					'#OnFileOpen': new Event('#OnFileOpen', ['file', 'content']),
+					'#OnTree': new Event('#OnTree', ['tree'])
 		};
 	}
 

@@ -1,5 +1,5 @@
 from flask import Flask, send_from_directory, jsonify, request
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 import settings
 import os
 
@@ -39,10 +39,11 @@ def requestFileOpen():
     	"content": lines
     })
 
-@socketio.on('connect', namespace='/chat')
+@socketio.on('connect')
 def test_connect():
-    emit('my response', {'data': 'Connected'})
-
-@socketio.on('my event')
-def handle_my_custom_event(json):
-    print('received json: ' + str(json))
+	result = []
+	for root, dirs, files in os.walk(settings.PROJECT_PATH, topdown=True):
+		if not '.' in root[len(settings.PROJECT_PATH):]:
+			for name in files:
+				result.append(os.path.join(root, name)[len(settings.PROJECT_PATH) + 1:])
+	emit('emitTree', result)
