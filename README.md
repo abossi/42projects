@@ -9,6 +9,8 @@ Install the project, dependencies and start the server.
 $ git clone https://github.com/abossi/42projects.git 42project
 $ cd 42project
 $ pip3 install flask
+$ pip3 install flask_socketio
+$ pip3 install python-socketIO
 $ python3 start
 ```
 
