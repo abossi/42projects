@@ -3,6 +3,8 @@ from flask_socketio import SocketIO
 import settings
 import os
 
+from ProjectGraph import graph
+
 app = Flask(__name__, static_url_path='')
 socketio = SocketIO(app)
 
@@ -46,3 +48,8 @@ def test_connect():
 @socketio.on('my event')
 def handle_my_custom_event(json):
     print('received json: ' + str(json))
+
+#@socketio.on('get_graph')
+@app.route('/update', methods=['GET'])
+def get_graph():
+    return graph.update(settings.PROJECT_PATH);
