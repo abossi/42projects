@@ -32,6 +32,13 @@ function aceBuildsObj(div_contener, obj_name){
 	    	case 'js':
 	    		this.editor.session.setMode("ace/mode/javascript");
 	    		break;
+	    	case 'html':
+	    		this.editor.session.setMode("ace/mode/html");
+	    		break;
+	    	case 'c':
+	    	case 'cpp':
+	    		this.editor.session.setMode("ace/mode/c_cpp");
+	    		break;
 		}
 		$('.active_div').toggleClass('active_div');
 		this.div_contener.addClass('active_div');
