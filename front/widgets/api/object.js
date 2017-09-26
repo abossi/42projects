@@ -7,11 +7,12 @@ function apiObj(){
     /*socket.on('connect', function() {
         socket.emit('my event', {data: 'I\'m connected!'});
     });*/
-    socket.on('emitTree', function(data) {
-        EventManager.dispatch('#OnTree', {tree: data});
+    socket.on('emitTree', function(data){
+        EventManager.dispatch('#OnTree', {tree: data[0], root: data[1]});
     });
 
-	this.requestFileOpen = function(nameEvent, params){
+	this.requestFileOpen = function(nameEvent, params)
+	{
 	    var deferred = new $.Deferred();
 		$.ajax({
 			url : '/requestFileOpen',
@@ -31,7 +32,8 @@ function apiObj(){
 	    return deferred.promise();
 	}
 
-	this.requestFileSave = function(nameEvent, params){
+	this.requestFileSave = function(nameEvent, params)
+	{
 	    var deferred = new $.Deferred();
 		$.ajax({
 			url : '/requestFileSave',

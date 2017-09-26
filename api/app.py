@@ -71,4 +71,4 @@ def test_connect():
 		if not '.' in root[len(settings.PROJECT_PATH):]:
 			for name in files:
 				result.append(os.path.join(root, name)[len(settings.PROJECT_PATH) + 1:])
-	emit('emitTree', result)
+	emit('emitTree', [result, settings.PROJECT_PATH])

@@ -42,7 +42,7 @@ class Hub
 		this.events = {
 					'#APIRequestFileOpen': new Event('#APIRequestFileOpen', ['file']),
 					'#OnFileOpen': new Event('#OnFileOpen', ['file', 'content']),
-					'#OnTree': new Event('#OnTree', ['tree']),
+					'#OnTree': new Event('#OnTree', ['tree', 'root']),
 					'#APIRequestFileSave': new Event('#APIRequestFileSave', ['file', 'content']),
 					'#OnFileSave': new Event('#OnFileSave', ['file', 'content'])
 		};
