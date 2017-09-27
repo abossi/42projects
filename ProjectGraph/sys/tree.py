@@ -2,9 +2,7 @@ import fnmatch
 import json
 import os
 
-from ProjectGraph import filters
-
-def rebuild(filters=filters.default, project_root='.'):
+def build(project_root, filters):
 
     file_list = []
     #cwd = os.getcwd()
@@ -17,7 +15,7 @@ def rebuild(filters=filters.default, project_root='.'):
 
         for file in files:
             if not file.startswith('.'):
-                for ext in filters:
+                for ext in filters.whitelist:
                     if fnmatch.fnmatch(file, ext):
                         path = os.path.join(root, file)
                         file_list.append({ path : os.path.getsize(path) });

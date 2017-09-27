@@ -52,4 +52,4 @@ def handle_my_custom_event(json):
 #@socketio.on('get_graph')
 @app.route('/update', methods=['GET'])
 def get_graph():
-    return graph.update(settings.PROJECT_PATH);
+    return graph.update();

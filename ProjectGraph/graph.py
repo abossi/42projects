@@ -1,10 +1,13 @@
-from .sys import tree
-from . import lexer
-from . import filters
+from .project import Project
 
 import json
 
-def update(project_root='.'):
-    r = tree.rebuild(filters.py, project_root)
-    lexer.parse(r)
-    return json.dumps(r)
+project = Project()
+
+def chroot(root):
+    project.root = root
+
+def update():
+    project.rebuild()
+    project.relink()
+    return json.dumps(project.tree)
