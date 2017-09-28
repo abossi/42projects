@@ -9,7 +9,7 @@ class Project:
     def __init__(self, root='.', language=languages.py):
         print(language.filter)
         self.root = root
-        self.lang = self.language = language
+        self.setLanguage(language)
 
     def rebuild(self):
         """ Rebuild the project tree"""
@@ -18,3 +18,6 @@ class Project:
     def relink(self):
         """ Relink project files"""
         lexer.parse(self.tree)
+
+    def setLanguage(self, language):
+        self.lang = self.language = language
