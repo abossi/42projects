@@ -42,7 +42,7 @@ function aceBuildsObj(div_contener, obj_name){
 		}
 		$('.active_div').toggleClass('active_div');
 		this.div_contener.addClass('active_div');
-		divX = parseInt(this.div_name.split('_')[2]);
+		dashboard.divX = parseInt(this.div_name.split('_')[2]);
 		this.editor.focus();
 	}
 
@@ -60,4 +60,9 @@ function aceBuildsObj(div_contener, obj_name){
 	{
 		EventManager.register(eventName, { 'callback': callback.bind(this) });
 	}
+	
+	this.keysEvents = [
+	    {key: [27], desc: "escape edit mode", callback: this.change_focus.bind(this)},
+	    {key: [17, 83], desc: "save current file", callback: this.save_file.bind(this)}
+	]
 }

@@ -27,7 +27,7 @@
 		</div>
 	</div>
 	</div>
-	<button type="button" class="btn btn-primary btn-lg settings-button" data-toggle="modal" data-target="#modal-settings">
+	<button id="settings-button" type="button" class="btn btn-primary btn-lg settings-button" data-toggle="modal" data-target="#modal-settings">
 	    <span class="glyphicon glyphicon-cog" aria-hidden="true" style="top:5px;"></span>
 	</button>
     
@@ -66,87 +66,23 @@
 	</body>
 <script src="/front/core/hub.js"></script>
 <script src="/front/core/settings.js"></script>
+<script src="/front/core/dashboard.js"></script>
 </html>
 <script>
 
-var optionKey = false;
-var divX = 1;
-
-$( document ).ready(function() {
-
-	/***************************************************/
-	/*      bind keyEvent and mouseEvent for div       */
-	/***************************************************/
-	window.onkeydown = function(e) {
-		var key = e.keyCode ? e.keyCode : e.which;
-
-		if (key == 27 && divX == 2)
-			editor.change_focus();
-		if (key == 18)
-			optionKey = true;
-		if (optionKey){
-			var change = false;
-			if (key == 39){
-				$('#div_1_' + divX).toggleClass('active_div');
-				change = true;
-				divX++;
-				if (divX == 3)
-					divX = 1;
-			}
-			if (key == 37){
-				$('#div_1_' + divX).toggleClass('active_div');
-				change = true;
-				divX--;
-				if (divX == 0)
-					divX = 2;
-			}
-			if (change)
-			{
-				$('#div_1_' + divX).toggleClass('active_div');
-			}
-		}
-	}
-	window.onkeyup = function(e) {
-		var key = e.keyCode ? e.keyCode : e.which;
-
-		if (key == 18)
-		{
-			optionKey = false;
-			if (divX == 2)
-			{
-				editor.get_focus();
-			}
-			else
-			{
-				tree.get_focus();
-			}
-		}
-	}
-	$('#div_1_1').on('click', function(){
-		$('.active_div').toggleClass('active_div');
-		$('#div_1_1').toggleClass('active_div');
-		tree.get_focus();
-		divX = 1;
-	});
-	$('#div_1_2').on('click', function(){
-		$('.active_div').toggleClass('active_div');
-		$('#div_1_2').toggleClass('active_div');
-		editor.get_focus();
-		divX = 2;
-	});
-	/* end bind event*/
-
-	/***************************************************/
-	/*    create all object and connect each events    */
-	/***************************************************/
-	editor = new aceBuildsObj($('#div_1_2'), 'editor');
-	editor.register('#OnFileOpen', editor.edit_text);
-	api = new apiObj();
-	api.register('#APIRequestFileOpen', api.requestFileOpen);
-	api.register('#APIRequestFileSave', api.requestFileSave);
-	api.register('#APIRequestSettings', api.requestSettings);
-	tree = new treeObj($('#div_1_1'), 'tree');
-	tree.register('#OnTree', tree.apply_tree);
-	/* end create objects and binding */
+$( document ).ready(function()
+{
+    window.onkeydown = function(e)
+    {
+        var key = e.keyCode ? e.keyCode : e.which;
+        dashboard.onkeydown(key);
+    }
+    
+    window.onkeyup = function(e)
+    {
+        var key = e.keyCode ? e.keyCode : e.which;
+        dashboard.onkeyup(key);
+    }
 });
+
 </script>
