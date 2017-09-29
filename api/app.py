@@ -63,6 +63,34 @@ def requestFileSave():
     	"file": request.args['file'],
     	"content": request.args['content']
     })
+    
+@app.route('/requestSettings', methods=['GET'])
+def requestSettings():
+    if not request.args or not 'path' in request.args or not 'lang' in request.args:
+        return jsonify({
+                "status": "error",
+                "message": "error in json"
+        }), 400
+    settings.PROJECT_PATH = request.args['path']
+    settings.LANGAGE = request.args['lang']
+    try:
+        with open("./settings.py", "w") as f:
+            f.write('PROJECT_PATH = "' + settings.PROJECT_PATH + '"\n' +
+                    'LANGAGE = "' + settings.LANGAGE + '"')
+    except FileNotFoundError:
+        return {
+                "status": "error",
+                "message": "file not found",
+        }
+    except PermissionError:
+        return {
+                "status": "error",
+                "message": "permission denied",
+        }
+    return jsonify({
+        "path": settings.PROJECT_PATH,
+        "lang": settings.LANGAGE
+    })
 
 @socketio.on('connect')
 def test_connect():
@@ -72,3 +100,4 @@ def test_connect():
 			for name in files:
 				result.append(os.path.join(root, name)[len(settings.PROJECT_PATH) + 1:])
 	emit('emitTree', [result, settings.PROJECT_PATH])
+	emit('settings', [settings.PROJECT_PATH, settings.LANGAGE])

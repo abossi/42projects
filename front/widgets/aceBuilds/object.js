@@ -4,7 +4,7 @@ function aceBuildsObj(div_contener, obj_name){
 	this.div_name = div_contener.attr('id');
 	div_contener.html('<button id="' + this.div_name + '-save" type="button" onclick="' + obj_name + '.save_file();" class="btn btn-primary" disabled="disabled">save</button>' +
 		'<span id="' + this.div_name + '-file" style="font-size:20px;margin:15px;"></span>' +
-		'<div id="' + this.div_name + '-ace" style="position:absolute;bottom:15px;left:5px;right:5px;top:50px;"></div>');
+		'<div id="' + this.div_name + '-ace" style="position:absolute;bottom:5px;left:5px;right:5px;top:50px;"></div>');
 	this.editor = ace.edit(this.div_name + '-ace');
     this.editor.setTheme("ace/theme/monokai");
     this.editor.session.setMode("ace/mode/javascript");

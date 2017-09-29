@@ -20,15 +20,52 @@
 	<div class="tab-content" style="height:100%;">
 	<div role="tabpanel" class="tab-pane active container-fluid" style="height:100%;overflow:auto;">
 	<div class="row" style="height:100%;">
-		<div id="div_1_1" class="col-md-3 active_div" style="height:100%;background-color:#f0f0f0;padding:10px;position:relative;">
+		<div id="div_1_1" class="col-md-3 active_div" style="height:100%;background-color:#ddd;padding:10px;position:relative;">
 		</div>
-		<div id="div_1_2" class="col-md-9" style="height:100%;background-color:#f0f0f0;padding:10px;position:relative;">
+		<div id="div_1_2" class="col-md-9" style="height:100%;background-color:#ddd;padding:10px;position:relative;">
 		</div>
 		</div>
 	</div>
 	</div>
+	<button type="button" class="btn btn-primary btn-lg settings-button" data-toggle="modal" data-target="#modal-settings">
+	    <span class="glyphicon glyphicon-cog" aria-hidden="true" style="top:5px;"></span>
+	</button>
+    
+    
+    <div id="modal-settings" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size:1.6em;">&times;</span></button>
+            <h3 class="modal-title">Settings</h3>
+          </div>
+          <div class="modal-body">
+            <h4>project path</h4>
+            <div class="row">
+              <div class="col-xs-4">
+                  <input type="text" id="settings-path" class="form-control" placeholder="Enter a path">
+              </div>
+            </div>
+            <h4>Langage</h4>
+            <div class="row">
+              <div class="col-xs-4">
+                  <select id="settings-select-lang" class="form-control">
+                    <option value="c" selected>langage C</option>
+                    <option value="python" selected>Python</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="settings.saveChange();">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 	</body>
 <script src="/front/core/hub.js"></script>
+<script src="/front/core/settings.js"></script>
 </html>
 <script>
 
@@ -107,6 +144,7 @@ $( document ).ready(function() {
 	api = new apiObj();
 	api.register('#APIRequestFileOpen', api.requestFileOpen);
 	api.register('#APIRequestFileSave', api.requestFileSave);
+	api.register('#APIRequestSettings', api.requestSettings);
 	tree = new treeObj($('#div_1_1'), 'tree');
 	tree.register('#OnTree', tree.apply_tree);
 	/* end create objects and binding */

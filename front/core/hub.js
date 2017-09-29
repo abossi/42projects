@@ -44,7 +44,9 @@ class Hub
 					'#OnFileOpen': new Event('#OnFileOpen', ['file', 'content']),
 					'#OnTree': new Event('#OnTree', ['tree', 'root']),
 					'#APIRequestFileSave': new Event('#APIRequestFileSave', ['file', 'content']),
-					'#OnFileSave': new Event('#OnFileSave', ['file', 'content'])
+					'#OnFileSave': new Event('#OnFileSave', ['file', 'content']),
+					'#APIRequestSettings': new Event('#APIRequestSettings', ['path', 'lang']),
+					'#OnSettings': new Event('#OnSettings', ['path', 'lang'])
 		};
 	}
 

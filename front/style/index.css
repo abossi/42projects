@@ -9,3 +9,23 @@ body {
 .active_div {
 	background-color: white !important;
 }
+
+.settings-button {
+     border-radius: 50%;
+     position: fixed;
+     bottom: 25px;
+     right: 25px;
+     padding: 4px 12px;
+     box-shadow: 5px 5px 20px rgba(0,0,0,0.7);
+     font-size: 3em;
+     z-index: 1;
+}
+
+h4 {
+    border-bottom: 1px solid #eee;
+    padding: 0px 0px 8px 15px;
+}
+
+td {
+    border: 1px solid #ddd;
+}

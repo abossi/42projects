@@ -10,6 +10,10 @@ function apiObj(){
     socket.on('emitTree', function(data){
         EventManager.dispatch('#OnTree', {tree: data[0], root: data[1]});
     });
+    
+    socket.on('settings', function(data){
+        EventManager.dispatch('#OnSettings', {path: data[0], lang: data[1]});
+    });
 
 	this.requestFileOpen = function(nameEvent, params)
 	{
@@ -44,6 +48,29 @@ function apiObj(){
 			},
 			success : function(json){
 				EventManager.dispatch('#OnFileSave', json);
+				deferred.resolve(json); //affectation du json dans une variable global
+				return json;
+			},
+			error : function(resultat, statut, erreur){
+				console.log(resultat);
+				alert('Impossible to save file!');
+			}
+	    });
+	    return deferred.promise();
+	}
+
+	this.requestSettings = function(nameEvent, params)
+	{
+	    var deferred = new $.Deferred();
+		$.ajax({
+			url : '/requestSettings',
+			type : 'GET',
+			data: {
+				path: params['path'],
+				lang: params['lang']
+			},
+			success : function(json){
+				EventManager.dispatch('#OnSettings', json);
 				deferred.resolve(json); //affectation du json dans une variable global
 				return json;
 			},
